@@ -1,0 +1,24 @@
+package {{package}};
+
+{{#imports}}import {{import}};
+{{/imports}}
+
+import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
+
+import org.fusesource.restygwt.client.RestService;
+
+import java.util.Map;
+import java.util.List;
+
+@Path("/{{{baseName}}}"){{#hasConsumes}}
+@Consumes({ {{#consumes}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/consumes}} }){{/hasConsumes}}{{#hasProduces}}
+@Produces({ {{#produces}}"{{{mediaType}}}"{{#hasMore}}, {{/hasMore}}{{/produces}} }){{/hasProduces}}
+{{>generatedAnnotation}}public interface {{classname}} extends RestService {
+{{#operations}}
+{{#operation}}
+
+{{>apiInterface}}
+{{/operation}}
+}
+{{/operations}}
