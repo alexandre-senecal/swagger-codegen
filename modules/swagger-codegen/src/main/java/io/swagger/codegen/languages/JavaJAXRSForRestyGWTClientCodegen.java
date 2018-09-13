@@ -94,7 +94,7 @@ public class JavaJAXRSForRestyGWTClientCodegen extends AbstractJavaJAXRSServerCo
 			gwtModuleName = (String) additionalProperties.get(GWT_MODULE_NAME);
 		}
 		if (additionalProperties.containsKey(GWT_MODULE_PACKAGE)) {
-			gwtModuleName = (String) additionalProperties.get(GWT_MODULE_PACKAGE);
+			gwtModulePackage = (String) additionalProperties.get(GWT_MODULE_PACKAGE);
 		}
 		
 		super.processOpts();
