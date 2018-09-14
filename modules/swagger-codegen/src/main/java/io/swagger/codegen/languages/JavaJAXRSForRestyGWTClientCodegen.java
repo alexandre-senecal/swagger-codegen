@@ -2,7 +2,6 @@ package io.swagger.codegen.languages;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -120,30 +119,7 @@ public class JavaJAXRSForRestyGWTClientCodegen extends AbstractJavaJAXRSServerCo
 	@Override
 	public void addOperationToGroup(String tag, String resourcePath, Operation operation, CodegenOperation co,
 			Map<String, List<CodegenOperation>> operations) {
-		String basePath = resourcePath;
-		if (basePath.startsWith("/")) {
-			basePath = basePath.substring(1);
-		}
-		int pos = basePath.indexOf("/");
-		if (pos > 0) {
-			basePath = basePath.substring(0, pos);
-		}
-
-		if (basePath == "") {
-			basePath = "default";
-		} else {
-			if (co.path.startsWith("/" + basePath)) {
-				co.path = co.path.substring(("/" + basePath).length());
-			}
-			co.subresourceOperation = !co.path.isEmpty();
-		}
-		List<CodegenOperation> opList = operations.get(basePath);
-		if (opList == null) {
-			opList = new ArrayList<CodegenOperation>();
-			operations.put(basePath, opList);
-		}
-		opList.add(co);
-		co.baseName = basePath;
+		 super.addOperationToGroup(tag, resourcePath, operation, co, operations);
 	}
 
 	@Override
